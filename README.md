@@ -28,48 +28,36 @@ cd StudentPerformance
 ### 1. Analyze Study Hours and Extracurricular Activities
 This query evaluates how studying more than 10 hours per week, combined with extracurricular involvement, impacts exam performance.
 
-1
+![](first.png)
 
 #### Output:
 
-11
+![](first1.png)
+**. . .**
 
 ### 2. Identify Sweet Spots for Study Hours
 This query groups students into ranges based on study hours and calculates the average exam score for each group.
 
-SELECT CASE WHEN hours_studied BETWEEN 1 AND 5 THEN '1-5 hours'
-            WHEN hours_studied BETWEEN 6 AND 10 THEN '6-10 hours'
-            WHEN hours_studied BETWEEN 11 AND 15 THEN '11-15 hours'
-            ELSE '16+ hours' END AS hours_studied_range,
-       AVG(exam_score) AS avg_exam_score
-FROM student_performance
-GROUP BY hours_studied_range
-ORDER BY avg_exam_score DESC;
+![](second.png)
 
 #### Output:
 
-22
+![](second2.png)
 
 ### 3. Rank Students by Exam Performance
 This query assigns ranks based on exam scores using a window function. Students with the same exam score share the same rank.
 
-SELECT attendance,
-       hours_studied,
-       sleep_hours,
-       tutoring_sessions,
-       DENSE_RANK() OVER (ORDER BY exam_score DESC) AS exam_rank
-FROM student_performance
-ORDER BY exam_rank
-LIMIT 30;
+![](third.png)
 
 #### Output:
 
-33
-
+![](third3.png)
+**. . .**
+ 
 ### Results
-- Impact of Study Hours and Extracurricular Activities: Students who studied over 10 hours per week and participated in extracurricular activities tended to achieve higher exam scores.
-- Sweet Spot for Study Hours: The best performance was observed among students studying between 11 and 15 hours per week.
-- Student Rankings: The student_exam_ranking query provided an ordered view of top-performing students without revealing sensitive score details.
+- **Impact of Study Hours and Extracurricular Activities**: Students who studied **over 10 hours per week and participated in extracurricular activities** tended to achieve higher exam scores.
+- **Sweet Spot for Study Hours**: The best performance was observed among students studying **between 11 and 15 hours per week**.
+- **Student Rankings**: The student_exam_ranking query provided an ordered view of top-performing students without revealing sensitive score details.
 
 ## Conclusion
 This project highlights key factors influencing student success, including the importance of balanced study hours and extracurricular involvement. By leveraging SQL analytics, educational institutions can better guide students toward achieving their academic potential.
